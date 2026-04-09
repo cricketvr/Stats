@@ -6,8 +6,11 @@ const players = [
     runs: 100,
     fifties: 1,
     hundreds: 0,
+    best: "76 (30)",
     highest: 76,
-    wins: 1
+    wins: 1,
+    fastest50: "30 balls",
+    fastest100: "-"
   },
   {
     name: "HimalyanMonsta",
@@ -16,8 +19,11 @@ const players = [
     runs: 157,
     fifties: 2,
     hundreds: 0,
+    best: "83 (30)",
     highest: 83,
-    wins: 1
+    wins: 1,
+    fastest50: "22 balls",
+    fastest100: "-"
   },
   {
     name: "Santa Ji",
@@ -26,8 +32,11 @@ const players = [
     runs: 0,
     fifties: 0,
     hundreds: 0,
+    best: "-",
     highest: 0,
-    wins: 0
+    wins: 0,
+    fastest50: "-",
+    fastest100: "-"
   },
   {
     name: "Vishal",
@@ -36,18 +45,23 @@ const players = [
     runs: 0,
     fifties: 0,
     hundreds: 0,
+    best: "-",
     highest: 0,
-    wins: 0
+    wins: 0,
+    fastest50: "-",
+    fastest100: "-"
   }
 ];
 
-// PERFORMANCE SCORE (Ranking Logic)
+// CALCULATIONS
 players.forEach(p=>{
   p.strike = p.balls ? ((p.runs/p.balls)*100).toFixed(2) : 0;
-  p.score = p.runs + (p.wins*20) + (p.fifties*10);
+
+  // PERFORMANCE SCORE
+  p.score = p.runs + (p.wins*25) + (p.fifties*15);
 });
 
-// SORT BY PERFORMANCE
+// SORT
 players.sort((a,b)=> b.score - a.score);
 
 // RENDER
@@ -62,14 +76,19 @@ players.forEach((p,i)=>{
     <div class="rank">${medal} Rank ${i+1}</div>
     <h2>${p.name}</h2>
 
-    Matches: ${p.matches}<br>
-    Balls: ${p.balls}<br>
-    Runs: ${p.runs}<br>
-    50s: ${p.fifties}<br>
-    100s: ${p.hundreds}<br>
-    Highest: ${p.highest}<br>
-    Wins: ${p.wins}<br>
-    Strike Rate: ${p.strike}
+    <div class="stats">
+      <p>🎮 Matches: ${p.matches}</p>
+      <p>🏏 Runs: ${p.runs}</p>
+      <p>⚡ Balls: ${p.balls}</p>
+      <p>🔥 Strike Rate: ${p.strike}</p>
+      <p>🎯 Best Score: ${p.best}</p>
+      <p>📈 Highest: ${p.highest}</p>
+      <p>💥 50s: ${p.fifties}</p>
+      <p>💯 100s: ${p.hundreds}</p>
+      <p>🚀 Fastest 50: ${p.fastest50}</p>
+      <p>👑 Fastest 100: ${p.fastest100}</p>
+      <p>🏆 Wins: ${p.wins}</p>
+    </div>
   </div>
   `;
 });
