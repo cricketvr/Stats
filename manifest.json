@@ -1,6 +1,6 @@
 {
-  "name": "VR Cricket League",
-  "short_name": "VR Cricket",
+  "name": "VR Sports Hub",
+  "short_name": "VR Hub",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#000",
