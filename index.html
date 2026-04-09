@@ -11,22 +11,22 @@
 
 <h1>🎮 VR Sports Hub</h1>
 
+<audio id="clickSound" src="https://www.soundjay.com/buttons/sounds/button-16.mp3"></audio>
+
 <div class="games">
-
-  <div class="game-card" onclick="openGame('cricket.html')">
-    🏏 Cricket
-  </div>
-
+  <div class="game-card" onclick="openGame()">🏏 Cricket</div>
   <div class="game-card">🏓 Table Tennis</div>
   <div class="game-card">⚽ Football</div>
   <div class="game-card">🏀 Basketball</div>
   <div class="game-card">🎯 Archery</div>
-
 </div>
 
 <script>
-function openGame(page){
-  window.location.href = page;
+function openGame(){
+  document.getElementById("clickSound").play();
+  setTimeout(()=>{
+    window.location.href = "cricket.html";
+  },200);
 }
 </script>
 
