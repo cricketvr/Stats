@@ -9,8 +9,8 @@ const players = [
     best: "76 (30)",
     highest: 76,
     wins: 1,
-    fastest50: "30 balls",
-    fastest100: "-"
+    fastest_fifty: "-",
+    fastest_hundred: "-"
   },
   {
     name: "HimalyanMonsta",
@@ -22,8 +22,8 @@ const players = [
     best: "83 (30)",
     highest: 83,
     wins: 1,
-    fastest50: "22 balls",
-    fastest100: "-"
+    fastest_fifty: "-",
+    fastest_hundred: "-"
   },
   {
     name: "Santa Ji",
@@ -35,8 +35,8 @@ const players = [
     best: "-",
     highest: 0,
     wins: 0,
-    fastest50: "-",
-    fastest100: "-"
+    fastest_fifty: "-",
+    fastest_hundred: "-"
   },
   {
     name: "V- Chach",
@@ -48,8 +48,8 @@ const players = [
     best: "-",
     highest: 0,
     wins: 0,
-    fastest50: "-",
-    fastest100: "-"
+    fastest_fifty: "-",
+    fastest_hundred: "-"
   }
 ];
 
