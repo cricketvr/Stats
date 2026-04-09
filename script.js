@@ -1,9 +1,9 @@
-// 🔥 Firebase config paste kar yaha
+// 🔥 Firebase config (yaha apna paste karna hai)
 const firebaseConfig = {
-  apiKey: "YOUR_KEY",
-  authDomain: "YOUR_DOMAIN",
-  databaseURL: "YOUR_DB_URL",
-  projectId: "YOUR_ID"
+  apiKey: "PASTE_HERE",
+  authDomain: "PASTE_HERE",
+  databaseURL: "PASTE_HERE",
+  projectId: "PASTE_HERE"
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -13,15 +13,28 @@ let data = {};
 
 const playersList = ["Kandharbaby","HimalyanMonsta","Vishal","SantaJi"];
 
-// LOAD DATA
-db.ref("players").on("value", snapshot => {
-  data = snapshot.val() || {};
+// ✅ FIRST TIME DATA CREATE
+db.ref("players").once("value", snap => {
+  if (!snap.exists()) {
+    db.ref("players").set({
+      Kandharbaby: { matches: 0, runs: 0, balls: 0, fifties: 0, hundreds: 0, wins: 0 },
+      HimalyanMonsta: { matches: 0, runs: 0, balls: 0, fifties: 0, hundreds: 0, wins: 0 },
+      Vishal: { matches: 0, runs: 0, balls: 0, fifties: 0, hundreds: 0, wins: 0 },
+      SantaJi: { matches: 0, runs: 0, balls: 0, fifties: 0, hundreds: 0, wins: 0 }
+    });
+  }
+});
+
+// 🔄 REALTIME LOAD
+db.ref("players").on("value", snap => {
+  data = snap.val() || {};
   render();
 });
 
-// RENDER
+// 🎨 RENDER
 function render() {
   let html = "";
+
   playersList.forEach(p => {
     let d = data[p] || {};
 
@@ -31,75 +44,17 @@ function render() {
     html += `
       <div class="card">
         <h2>${p}</h2>
-        Matches: ${d.matches || 0}<br>
-        Runs: ${d.runs || 0}<br>
-        Balls: ${d.balls || 0}<br>
-        Avg: ${avg}<br>
-        SR: ${sr}<br>
-        50s: ${d.fifties || 0}<br>
-        100s: ${d.hundreds || 0}<br>
-        Wins: ${d.wins || 0}<br>
+        <p>Matches: ${d.matches || 0}</p>
+        <p>Runs: ${d.runs || 0}</p>
+        <p>Balls: ${d.balls || 0}</p>
+        <p>Average: ${avg}</p>
+        <p>Strike Rate: ${sr}</p>
+        <p>50s: ${d.fifties || 0}</p>
+        <p>100s: ${d.hundreds || 0}</p>
+        <p>Wins: ${d.wins || 0}</p>
       </div>
     `;
   });
 
   document.getElementById("players").innerHTML = html;
-}
-
-// LOGIN
-function showLogin() {
-  document.getElementById("loginBox").style.display = "block";
-}
-
-function login() {
-  let u = document.getElementById("user").value;
-  let p = document.getElementById("pass").value;
-
-  if (u === "metacricket" && p === "sabkhelo") {
-    document.getElementById("loginBox").style.display = "none";
-    openAdmin();
-  } else {
-    alert("Wrong Password ❌");
-  }
-}
-
-// ADMIN
-function openAdmin() {
-  let html = "";
-
-  playersList.forEach(p => {
-    let d = data[p] || {};
-
-    html += `
-      <h3>${p}</h3>
-      <input placeholder="Matches" id="${p}_matches" value="${d.matches || 0}">
-      <input placeholder="Runs" id="${p}_runs" value="${d.runs || 0}">
-      <input placeholder="Balls" id="${p}_balls" value="${d.balls || 0}">
-      <input placeholder="50s" id="${p}_50" value="${d.fifties || 0}">
-      <input placeholder="100s" id="${p}_100" value="${d.hundreds || 0}">
-      <input placeholder="Wins" id="${p}_wins" value="${d.wins || 0}">
-    `;
-  });
-
-  document.getElementById("editArea").innerHTML = html;
-  document.getElementById("adminPanel").style.display = "block";
-}
-
-// SAVE
-function saveData() {
-  let newData = {};
-
-  playersList.forEach(p => {
-    newData[p] = {
-      matches: +document.getElementById(p+"_matches").value,
-      runs: +document.getElementById(p+"_runs").value,
-      balls: +document.getElementById(p+"_balls").value,
-      fifties: +document.getElementById(p+"_50").value,
-      hundreds: +document.getElementById(p+"_100").value,
-      wins: +document.getElementById(p+"_wins").value
-    };
-  });
-
-  db.ref("players").set(newData);
-  alert("Saved ✅");
 }
