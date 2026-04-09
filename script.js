@@ -1,53 +1,77 @@
-// ⚠️ APNA FIREBASE CONFIG YAHAN PASTE KAR
-const firebaseConfig = {
-  apiKey: "PASTE",
-  authDomain: "PASTE",
-  databaseURL: "PASTE",
-  projectId: "PASTE"
-};
-
-firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
-
-const playersList = ["Kandharbaby","HimalyanMonsta","Vishal","SantaJi"];
-
-// FIRST TIME DATA
-db.ref("players").once("value", snap => {
-  if (!snap.exists()) {
-    db.ref("players").set({
-      Kandharbaby: { matches: 0, runs: 0 },
-      HimalyanMonsta: { matches: 0, runs: 0 },
-      Vishal: { matches: 0, runs: 0 },
-      SantaJi: { matches: 0, runs: 0 }
-    });
+const players = [
+  {
+    name: "Kandhar",
+    matches: 2,
+    balls: 60,
+    runs: 100,
+    fifties: 1,
+    hundreds: 0,
+    highest: 76,
+    wins: 1
+  },
+  {
+    name: "HimalyanMonsta",
+    matches: 2,
+    balls: 60,
+    runs: 157,
+    fifties: 2,
+    hundreds: 0,
+    highest: 83,
+    wins: 1
+  },
+  {
+    name: "Santa Ji",
+    matches: 0,
+    balls: 0,
+    runs: 0,
+    fifties: 0,
+    hundreds: 0,
+    highest: 0,
+    wins: 0
+  },
+  {
+    name: "Vishal",
+    matches: 0,
+    balls: 0,
+    runs: 0,
+    fifties: 0,
+    hundreds: 0,
+    highest: 0,
+    wins: 0
   }
+];
+
+// PERFORMANCE SCORE (Ranking Logic)
+players.forEach(p=>{
+  p.strike = p.balls ? ((p.runs/p.balls)*100).toFixed(2) : 0;
+  p.score = p.runs + (p.wins*20) + (p.fifties*10);
 });
 
-// LOAD DATA
-db.ref("players").on("value", snap => {
-  const data = snap.val() || {};
-  let html = "";
+// SORT BY PERFORMANCE
+players.sort((a,b)=> b.score - a.score);
 
-  playersList.forEach(p => {
-    let d = data[p] || {};
-    html += `<p>${p} - Runs: ${d.runs || 0}</p>`;
-  });
+// RENDER
+let html = "";
 
-  document.getElementById("players").innerHTML = html;
+players.forEach((p,i)=>{
+
+  let medal = ["🥇","🥈","🥉","🏅"][i] || "🏅";
+
+  html += `
+  <div class="card">
+    <div class="rank">${medal} Rank ${i+1}</div>
+    <h2>${p.name}</h2>
+
+    Matches: ${p.matches}<br>
+    Balls: ${p.balls}<br>
+    Runs: ${p.runs}<br>
+    50s: ${p.fifties}<br>
+    100s: ${p.hundreds}<br>
+    Highest: ${p.highest}<br>
+    Wins: ${p.wins}<br>
+    Strike Rate: ${p.strike}
+  </div>
+  `;
 });
 
-// ADMIN
-function showLogin() {
-  document.getElementById("loginBox").style.display = "block";
-}
-
-function login() {
-  let u = document.getElementById("user").value;
-  let p = document.getElementById("pass").value;
-
-  if (u === "metacricket" && p === "sabkhelo") {
-    alert("Login Success ✅");
-  } else {
-    alert("Wrong ❌");
-  }
-}
+document.getElementById("players").innerHTML = html;
