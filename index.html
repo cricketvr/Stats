@@ -1,1 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>VR Cricket League</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+</head>
 
+<body>
+
+<div class="header">
+  🏏 VR Cricket League
+</div>
+
+<div id="players"></div>
+
+<button class="admin-btn" onclick="showLogin()">Admin</button>
+
+<!-- LOGIN -->
+<div id="loginBox" class="modal">
+  <div class="modal-content">
+    <h3>Admin Login</h3>
+    <input id="user" placeholder="Username">
+    <input id="pass" type="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="adminPanel" class="modal">
+  <div class="modal-content">
+    <h3>Edit Stats</h3>
+    <div id="editArea"></div>
+    <button onclick="saveData()">Save</button>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js"></script>
+
+<script src="script.js"></script>
+
+</body>
+</html>
