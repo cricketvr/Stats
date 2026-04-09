@@ -39,7 +39,7 @@ const players = [
     fastest_hundred: "-"
   },
   {
-    name: "V- Chach",
+    name: "V- Chachi",
     matches: 0,
     balls: 0,
     runs: 0,
