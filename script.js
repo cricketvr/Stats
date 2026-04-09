@@ -9,7 +9,7 @@ const players = [
     best: "76 (30)",
     highest: 76,
     wins: 1,
-    fastest50: "30 balls",
+    fastest50: "-",
     fastest100: "-"
   },
   {
@@ -22,7 +22,7 @@ const players = [
     best: "83 (30)",
     highest: 83,
     wins: 1,
-    fastest50: "22 balls",
+    fastest50: "-",
     fastest100: "-"
   },
   {
