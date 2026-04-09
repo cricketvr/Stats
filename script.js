@@ -9,7 +9,7 @@ const players = [
     best: "76 (30)",
     highest: 76,
     wins: 1,
-    fastest50: "-",
+    fastest50: "30 balls",
     fastest100: "-"
   },
   {
@@ -22,7 +22,7 @@ const players = [
     best: "83 (30)",
     highest: 83,
     wins: 1,
-    fastest50: "-",
+    fastest50: "22 balls",
     fastest100: "-"
   },
   {
@@ -39,7 +39,7 @@ const players = [
     fastest100: "-"
   },
   {
-    name: "Vishal",
+    name: "V- Chach",
     matches: 0,
     balls: 0,
     runs: 0,
@@ -56,8 +56,6 @@ const players = [
 // CALCULATIONS
 players.forEach(p=>{
   p.strike = p.balls ? ((p.runs/p.balls)*100).toFixed(2) : 0;
-
-  // PERFORMANCE SCORE
   p.score = p.runs + (p.wins*25) + (p.fifties*15);
 });
 
@@ -68,8 +66,7 @@ players.sort((a,b)=> b.score - a.score);
 let html = "";
 
 players.forEach((p,i)=>{
-
-  let medal = ["🥇","🥈","🥉","🏅"][i] || "🏅";
+  let medal = ["🥇","🥈","🥉","🏅"][i];
 
   html += `
   <div class="card">
@@ -94,3 +91,20 @@ players.forEach((p,i)=>{
 });
 
 document.getElementById("players").innerHTML = html;
+
+// CHART
+const ctx = document.getElementById("chart");
+
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: players.map(p=>p.name),
+    datasets: [{
+      label: 'Runs',
+      data: players.map(p=>p.runs)
+    }]
+  },
+  options: {
+    plugins:{legend:{display:false}}
+  }
+});
