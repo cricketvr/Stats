@@ -3,42 +3,27 @@
 <head>
   <title>VR Cricket League</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body style="background:#111;color:white;font-family:sans-serif;text-align:center;">
 
-<div class="header">
-  🏏 VR Cricket League
-</div>
+<h1>🏏 VR Cricket League</h1>
 
 <div id="players"></div>
 
-<button class="admin-btn" onclick="showLogin()">Admin</button>
+<button onclick="showLogin()" style="padding:15px;margin-top:20px;">Admin</button>
 
-<!-- LOGIN -->
-<div id="loginBox" class="modal">
-  <div class="modal-content">
-    <h3>Admin Login</h3>
-    <input id="user" placeholder="Username">
-    <input id="pass" type="password" placeholder="Password">
-    <button onclick="login()">Login</button>
-  </div>
+<div id="loginBox" style="display:none;">
+  <input id="user" placeholder="username"><br><br>
+  <input id="pass" type="password" placeholder="password"><br><br>
+  <button onclick="login()">Login</button>
 </div>
 
-<!-- ADMIN PANEL -->
-<div id="adminPanel" class="modal">
-  <div class="modal-content">
-    <h3>Edit Stats</h3>
-    <div id="editArea"></div>
-    <button onclick="saveData()">Save</button>
-  </div>
-</div>
+<!-- FIREBASE -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-  
 
+<!-- SCRIPT -->
 <script src="script.js"></script>
 
 </body>
