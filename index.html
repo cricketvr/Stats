@@ -1,30 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>VR Cricket League</title>
+  <title>VR Sports Hub</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
 </head>
 
-<body style="background:#111;color:white;font-family:sans-serif;text-align:center;">
+<body class="home">
 
-<h1>🏏 VR Cricket League</h1>
+<h1>🎮 VR Sports Hub</h1>
 
-<div id="players"></div>
+<div class="games">
 
-<button onclick="showLogin()" style="padding:15px;margin-top:20px;">Admin</button>
+  <div class="game-card" onclick="openGame('cricket.html')">
+    🏏 Cricket
+  </div>
 
-<div id="loginBox" style="display:none;">
-  <input id="user" placeholder="username"><br><br>
-  <input id="pass" type="password" placeholder="password"><br><br>
-  <button onclick="login()">Login</button>
+  <div class="game-card">🏓 Table Tennis</div>
+  <div class="game-card">⚽ Football</div>
+  <div class="game-card">🏀 Basketball</div>
+  <div class="game-card">🎯 Archery</div>
+
 </div>
 
-<!-- FIREBASE -->
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-
-<!-- SCRIPT -->
-<script src="script.js"></script>
+<script>
+function openGame(page){
+  window.location.href = page;
+}
+</script>
 
 </body>
 </html>
