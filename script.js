@@ -14,15 +14,15 @@ const players = [
   },
   {
     name: "HimalyanMonsta",
-    matches: 2,
-    balls: 60,
-    runs: 157,
-    fifties: 2,
+    matches: 3,
+    balls: 90,
+    runs: 243,
+    fifties: 3,
     hundreds: 0,
-    best: "83 (30)",
-    highest: 83,
+    best: "86 (30)",
+    highest: 86,(30)
     wins: 1,
-    fastest_fifty: "-",
+    fastest_fifty: "(19 balls)",
     fastest_hundred: "-"
   },
   {
