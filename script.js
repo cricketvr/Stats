@@ -1,10 +1,10 @@
 const players = [
   {
     name: "Kandhar",
-    matches: 2,
-    balls: 60,
-    runs: 100,
-    fifties: 1,
+    matches: 3,
+    balls: 90,
+    runs: 164,
+    fifties: 2,
     hundreds: 0,
     best: "76 (30)",
     highest: 76,
